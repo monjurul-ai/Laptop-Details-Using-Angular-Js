@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Laptop Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+  </head>
+  <body ng-app = "myApp" ng-controller ="myController">
+
+   <div class="container">
+     <hr>
+     <button type="button" class="btn btn-info btn-lg align-right" data-toggle="modal" data-target="#myModal" > Add New </button>
+     <!--<img src="/images/praava.png"style=">-->
+     <hr>
+
+     <h2>All Users</h2>
+     <span class="clearfix"></span>
+     <hr>
+
+    <!-- <div class="alert alert-info" ng-if = "message">
+      <a href="#" class="close" ng-click = "clearMessage()">&times;</a>
+      Indicates a neutral informative change or action.
+    </div>-->
+
+
+
+     <table class="table table-striped">
+      <thead>
+       <tr>
+         <th>Index</th>
+         <th>Username</th>
+         <th>Email</th>
+         <th>Brand</th>
+         <th>RAM</th>
+         <th>SSD</th>
+         <th>Processor_Model</th>
+         <th>Battery</th>
+         <th>Charger</th>
+         <th>Edit</th>
+         <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+       <tr ng-repeat = "user in users">
+        <td>{{$index+1}}.</td>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.Brand}}</td>
+        <td>{{user.RAM}}</td>
+        <td>{{user.SSD}}</td>
+        <td>{{user.Model}}</td>
+        <td>{{user.Battery}}</td>
+        <td>{{user.Charger}}</td>
+        <td>
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalEdit" ng-click = "selectUser(user)">Edit</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalDelete" ng-click = "selectUser(user)">Delete</button>
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+     
+   </div>
+
+
+
+   
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">User Registation</h4>
+        </div>
+        <div class="modal-body">
+
+
+
+               <form class="form-horizontal" action="/action_page.php">
+                      <div class="form-group">
+                        <label class="control-label col-sm-2">UserName</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control"ng-model = "newUser.username">
+                        </div>
+                      </div>
+
+
+                      <div class="form-group">
+                        <label class="control-label col-sm-2">Email</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control"ng-model = "newUser.email">
+                        </div>
+                      </div>
+
+
+                      <div class="form-group">
+                        <label class="control-label col-sm-2">FullName</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control"ng-model = "newUser.fullName">
+                        </div>
+                      </div>
+
+
+                      <!--<div class="dropdown d-inline-block">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Laptop Band
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">Hp</a></li>
+                            <li><a href="#">Dell</a></li>
+                            <li><a href="#">Lenovo</a></li>
+                            <li><a href="#">Apple</a></li>
+                            <li><a href="#">Asus</a></li>
+                            <li><a href="#">Acer</a></li>
+
+                          </ul>
+                      </div>-->
+
+
+                    <div>
+                      <label class="col-sm-3 control-label">Brand</label>
+                      <select class="browser-default custom-select" ng-model="newUser.Brand">
+                        <!--<option selected>Laptop Brand</option>-->
+                        <option value="Hp">Hp</option>
+                        <option value="Dell">Dell</option>
+                        <option value="Lenovo">Lenovo</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Asus">Asus</option>
+                        <option value="Acer">Acer</option>
+                        
+                      </select>
+                    </div>
+
+                      <br><br>
+
+
+
+                      <!--<div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">RAM
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">4GB</a></li>
+                            <li><a href="#">8GB </a></li>
+                            <li><a href="#">16GB</a></li>
+
+                          </ul>
+                      </div>-->
+
+                    <div>
+                      <label class="col-sm-3 control-label">RAM</label>
+                      <select class="browser-default custom-select" ng-model="newUser.RAM">
+              
+                        <option value="4GB">4GB</option>
+                        <option value="8GB">8GB</option>
+                        <option value="16GB">16GB</option>
+                        
+                      </select>
+                    </div>
+
+                      <br><br>
+
+
+
+                      <!--<div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">SSD
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">128GB</a></li>
+                            <li><a href="#">256GB</a></li>
+                            <li><a href="#">512GB</a></li>
+                            <li><a href="#">1TB</a></li>
+
+                          </ul>
+                      </div>-->
+
+                    <div>
+                      <label class="col-sm-3 control-label">SSD</label>
+                      <select class="browser-default custom-select" ng-model="newUser.SSD">
+              
+                        <option value="128GB">128GB</option>
+                        <option value="256GB">256GB</option>
+                        <option value="512GB">512GB</option>
+                        <option value="1TB">1TB</option>
+                        
+                      </select>
+                    </div>
+
+                      <br><br>
+
+
+
+                     <!--<div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Battery
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">Hp</a></li>
+                            <li><a href="#">Dell</a></li>
+                            <li><a href="#">Lenovo</a></li>
+                            <li><a href="#">Apple</a></li>
+                            <li><a href="#">Asus</a></li>
+                            <li><a href="#">Acer</a></li>
+
+                          </ul>
+                                             
+                      </div> -->
+
+
+                    <div>
+                      <label class="col-sm-3 control-label">Battery</label>
+                      <select class="browser-default custom-select" ng-model="newUser.Battery">
+                        <!--<option selected>Laptop Brand</option>-->
+                        <option value="Hp">Hp</option>
+                        <option value="Dell">Dell</option>
+                        <option value="Lenovo">Lenovo</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Asus">Asus</option>
+                        <option value="Acer">Acer</option>
+                        
+                      </select>
+                    </div>
+
+
+
+
+
+                      <br><br>
+
+
+
+                      <!--<div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle"  type="button" data-toggle="dropdown">Processor Model
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">Core i9</a></li>
+                            <li><a href="#">Core i7</a></li>
+                            <li><a href="#">Core i5</a></li>
+                            <li><a href="#">Core i3</a></li>
+
+                          </ul>
+                      </div>-->
+
+
+
+
+                    <div>
+                      <label class="col-sm-3 control-label">Processor_Model</label>
+                      <select class="browser-default custom-select" ng-model="newUser.Model">
+                        <!--<option selected>Laptop Brand</option>-->
+                        <option value="Core i9">Core i9</option>
+                        <option value="Core i7">Core i7</option>
+                        <option value="Core i5">Core i5</option>
+                        <option value="Core i3">Core i3</option>
+                        
+                      </select>
+                    </div>
+
+                      <br><br>
+
+
+                      <!--<div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Charger
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">Hp</a></li>
+                            <li><a href="#">Dell</a></li>
+                            <li><a href="#">Lenovo</a></li>
+                            <li><a href="#">Apple</a></li>
+                            <li><a href="#">Asus</a></li>
+                            <li><a href="#">Acer</a></li>
+
+                          </ul>
+                      </div>-->
+
+
+                    <div>
+                      <label class="col-sm-3 control-label">Charger</label>
+                      <select class="browser-default custom-select" ng-model="newUser.Charger">
+                        <!--<option selected>Laptop Brand</option>-->
+                        <option value="Hp">Hp</option>
+                        <option value="Dell">Dell</option>
+                        <option value="Lenovo">Lenovo</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Asus">Asus</option>
+                        <option value="Acer">Acer</option>
+                        
+                      </select>
+                    </div>
+
+
+
+                      <br><br>
+
+
+
+                      <div class="form-group">
+                        <label class="control-label col-sm-2">MacAddress</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" ng-model = "newUser.macAddress">
+                        </div>
+                      </div>
+
+                      <br><br>
+
+
+
+
+
+
+
+
+
+                      <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                          <button type="submit" class="btn btn-default" ng-click = "saveUser()" data-dismiss="modal">Save</button>
+                        </div>
+                      </div>
+                </form>
+          
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+
+
+
+
+<!-- Edit Modal -->
+  <div class="modal fade" id="myModalEdit" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit This User</h4>
+        </div>
+        <div class="modal-body">
+
+
+
+               <form class="form-horizontal" action="/action_page.php">
+                      <div class="form-group">
+                        <label class="control-label col-sm-2">UserName</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" ng-model = "clickedUser.username">
+                        </div>
+                      </div>
+
+
+                      <div class="form-group">
+                        <label class="control-label col-sm-2">Email</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" ng-model = "clickedUser.email">
+                        </div>
+                      </div>
+
+
+                      <div class="form-group">
+                        <label class="control-label col-sm-2">FullName</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" ng-model = "clickedUser.fullName">
+                        </div>
+                      </div>
+
+
+                      <!--<div class="dropdown d-inline-block">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Laptop Band
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">Hp</a></li>
+                            <li><a href="#">Dell</a></li>
+                            <li><a href="#">Lenovo</a></li>
+                            <li><a href="#">Apple</a></li>
+                            <li><a href="#">Asus</a></li>
+                            <li><a href="#">Acer</a></li>
+
+                          </ul>
+                      </div>-->
+
+
+                      <div>
+                      <label class="col-sm-3 control-label">Brand</label>
+                      <select class="browser-default custom-select" ng-model="clickedUser.Brand">
+                        <!--<option selected>Laptop Brand</option>-->
+                        <option value="Hp">Hp</option>
+                        <option value="Dell">Dell</option>
+                        <option value="Lenovo">Lenovo</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Asus">Asus</option>
+                        <option value="Acer">Acer</option>
+                        
+                      </select>
+                    </div>
+
+
+                      <br><br>
+
+
+
+                      <!--<div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">RAM
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">4GB</a></li>
+                            <li><a href="#">8GB </a></li>
+                            <li><a href="#">16GB</a></li>
+
+                          </ul>
+                      </div>-->
+
+                    <div>
+                      <label class="col-sm-3 control-label">RAM</label>
+                      <select class="browser-default custom-select" ng-model="clickedUser.RAM">
+              
+                        <option value="4GB">4GB</option>
+                        <option value="8GB">8GB</option>
+                        <option value="16GB">16GB</option>
+                        
+                      </select>
+                    </div>
+
+                      <br><br>
+
+
+
+                      <!--<div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">SSD
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">128GB</a></li>
+                            <li><a href="#">256GB</a></li>
+                            <li><a href="#">512GB</a></li>
+                            <li><a href="#">1TB</a></li>
+
+                          </ul>
+                      </div>-->
+
+
+                    <div>
+                      <label class="col-sm-3 control-label">SSD</label>
+                      <select class="browser-default custom-select" ng-model="clickedUser.SSD">
+              
+                        <option value="128GB">128GB</option>
+                        <option value="256GB">256GB</option>
+                        <option value="512GB">512GB</option>
+                        <option value="1TB">1TB</option>
+                        
+                      </select>
+                    </div>
+
+                      <br><br>
+
+
+
+                      <!--<div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Battery
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">Hp</a></li>
+                            <li><a href="#">Dell</a></li>
+                            <li><a href="#">Lenovo</a></li>
+                            <li><a href="#">Apple</a></li>
+                            <li><a href="#">Asus</a></li>
+                            <li><a href="#">Acer</a></li>
+
+                          </ul>
+                      </div>-->
+
+
+                    <div>
+                      <label class="col-sm-3 control-label">Battery</label>
+                      <select class="browser-default custom-select" ng-model="clickedUser.Battery">
+                        <!--<option selected>Laptop Brand</option>-->
+                        <option value="Hp">Hp</option>
+                        <option value="Dell">Dell</option>
+                        <option value="Lenovo">Lenovo</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Asus">Asus</option>
+                        <option value="Acer">Acer</option>
+                        
+                      </select>
+                    </div>
+
+
+                      <br><br>
+
+
+
+                     <!-- <div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle"  type="button" data-toggle="dropdown">Processor Model
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">Core i9</a></li>
+                            <li><a href="#">Core i7</a></li>
+                            <li><a href="#">Core i5</a></li>
+                            <li><a href="#">Core i3</a></li>
+
+                          </ul>
+                      </div>-->
+
+
+                    <div>
+                      <label class="col-sm-3 control-label">Processor_Model</label>
+                      <select class="browser-default custom-select" ng-model="clickedUser.Model">
+                        <!--<option selected>Laptop Brand</option>-->
+                        <option value="Core i9">Core i9</option>
+                        <option value="Core i7">Core i7</option>
+                        <option value="Core i5">Core i5</option>
+                        <option value="Core i3">Core i3</option>
+                        
+                      </select>
+                    </div>
+
+
+
+
+
+                      <br><br>
+
+
+                      <!--<div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Charger
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">Hp</a></li>
+                            <li><a href="#">Dell</a></li>
+                            <li><a href="#">Lenovo</a></li>
+                            <li><a href="#">Apple</a></li>
+                            <li><a href="#">Asus</a></li>
+                            <li><a href="#">Acer</a></li>
+
+                          </ul>
+                      </div>-->
+
+                    <div>
+                      <label class="col-sm-3 control-label">Charger</label>
+                      <select class="browser-default custom-select" ng-model="clickedUser.Charger">
+                        <!--<option selected>Laptop Brand</option>-->
+                        <option value="Hp">Hp</option>
+                        <option value="Dell">Dell</option>
+                        <option value="Lenovo">Lenovo</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Asus">Asus</option>
+                        <option value="Acer">Acer</option>
+                        
+                      </select>
+                    </div>
+
+
+
+                      <br><br>
+
+
+
+                      <div class="form-group">
+                        <label class="control-label col-sm-2">MacAddress</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" ng-model = "clickedUser.macAddress">
+                        </div>
+                      </div>
+
+                      <br><br>
+
+
+
+
+
+
+
+
+
+                      <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                          <button type="submit" class="btn btn-default" ng-click = "updateUser()" data-dismiss="modal">Save</button>
+                        </div>
+                      </div>
+                </form>
+          
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+
+
+  <!-- Delete Modal -->
+  <div class="modal fade" id="myModalDelete" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Are you sure?</h4>
+        </div>
+        <div class="modal-body">
+
+
+
+               <strong style="color: red;">
+                 You are going to delete {{clickedUser.fullName}}. All information...
+               </strong>
+          
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click = "deleteUser()">Yes</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+  
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
